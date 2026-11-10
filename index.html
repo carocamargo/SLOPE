@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLOPE Interactive Figures</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: single narrow column, header + one row per interactive figure */
+  :root {
+    --bg: #ffffff; --fg: #17202b; --muted: #5c6a79; --line: #dde3ea;
+    --surface: #f3f6f9; --accent: #2c6fbb;
+    --sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #15181c; --fg: #e8ebef; --muted: #9aa4af; --line: #2c333b;
+    --surface: #1d2228; --accent: #5b9be0; color-scheme: dark; } }
+  :root[data-theme="dark"] {
+    --bg: #15181c; --fg: #e8ebef; --muted: #9aa4af; --line: #2c333b;
+    --surface: #1d2228; --accent: #5b9be0; color-scheme: dark; }
+
+  body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.55; }
+  .wrap { max-width: 760px; margin: 0 auto; padding-block: 48px 64px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid; gap: 36px; }
+  header { display: grid; gap: 10px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 30px; font-weight: 600; line-height: 1.2; margin: 0; text-wrap: balance; }
+  header p { margin: 0; color: var(--muted); max-width: 62ch; }
+
+  .figs { display: grid; gap: 14px; }
+  a.fig { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center;
+    padding: 20px 22px; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface); color: inherit; text-decoration: none;
+    transition: border-color .15s ease, transform .15s ease; }
+  a.fig:hover { border-color: var(--accent); }
+  a.fig:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .num { font-family: var(--mono); font-size: 13px; color: var(--muted); align-self: start; padding-top: 3px; }
+  .body { min-width: 0; display: grid; gap: 6px; }
+  .body h2 { font-size: 17px; font-weight: 600; margin: 0; }
+  .body p { margin: 0; color: var(--muted); font-size: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tag { font-family: var(--mono); font-size: 11.5px; padding: 2px 8px; border-radius: 4px;
+    border: 1px solid var(--line); color: var(--muted); }
+  .go { font-size: 20px; color: var(--accent); }
+  footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+  @media (max-width: 480px) { a.fig { grid-template-columns: 1fr auto; } .num { display: none; } h1 { font-size: 25px; } }
+  @media (prefers-reduced-motion: reduce) { a.fig { transition: none; } }
+</style>
+</head>
+<body>
+<style>body{margin:0}h2{margin:0}</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">SLOPE · Mediterranean total water level</span>
+    <h1>Interactive figures</h1>
+    <p>Explore how much of the extreme total water level (TWL) at each tide gauge is explained by the known budget terms. Open a figure, then use the buttons above the chart to switch station, start year or view. Hover over bars for values; drag to zoom, double-click to reset.</p>
+  </header>
+
+  <nav class="figs" aria-label="Figures">
+    <a class="fig" href="budget-buildup/index.html">
+      <span class="num">A</span>
+      <span class="body">
+        <h2>Budget build-up by gauge</h2>
+        <p>Cumulative fraction of TWL explained at every gauge as each known term is added.</p>
+        <span class="tags"><span class="tag">all gauges</span><span class="tag">start year</span><span class="tag">view</span></span>
+      </span>
+      <span class="go" aria-hidden="true">→</span>
+    </a>
+    <a class="fig" href="event-budget/index.html">
+      <span class="num">B</span>
+      <span class="body">
+        <h2>Per-event budget by gauge</h2>
+        <p>One stacked bar per extreme event, showing the budget components for a single station.</p>
+        <span class="tags"><span class="tag">station</span><span class="tag">extremes</span><span class="tag">start year</span></span>
+      </span>
+      <span class="go" aria-hidden="true">→</span>
+    </a>
+  </nav>
+
+  <footer>Figures are generated with Plotly and work in any modern browser, on desktop or phone.</footer>
+</div>
+</body></html>
